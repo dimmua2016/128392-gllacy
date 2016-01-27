@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Сливочное мороженое - Глейси</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="container">
+    <nav class="main-navigation">
+      <ul>
+        <li>
+          <a href="#">Каталог</a>
+          <ul>
+            <li><a href="#">Новинки</a></li>
+            <li><a href="#">Сливочное</a></li>
+            <li><a href="#">Щербеты</a></li>
+            <li><a href="#">Фруктовый лед</a></li>
+            <li><a href="#">Мелорин</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Доставка и оплата</a>
+        </li>
+        <li>
+          <a href="#">О Компании</a>
+        </li>          
+      </ul>
+    </nav>
+    <div class="search">
+      <div class="search-hover">
+        <input type="text" name="search" placeholder="Что ищем?">
+      </div>
+    </div>
+    <div class="user-block">
+      <a class="login" href="#">Вход</a>
+      <div class="login-hover">
+        <form action="#" method="post">
+          <input type="email" name="login-email" placeholder="Электронная почта">
+          <input type="password" name="login-password" placeholder="Пароль">
+          <button type="submit" name="login-submit">Войти</button>
+        </form>
+        <a href="#">Забыли пароль</a>
+        <a href="#">Новая регистрация</a>     
+      </div>
+    </div>
+    <div class="basket">
+      <div class="basket-menu">2 товара</div>
+      <div class="item">
+        <table>
+          <tr>
+            <td><img src="img/cross.svg" width="11" height="11" alt=""></td>
+            <td><img src="img/ice-mini-1.png" width="33" height="33" alt=""></td>
+            <td>Пломбир с апельсиновым джемом</td>
+            <td>1,5 кг <span>х 200 руб</span></td>
+            <td>300 руб</td>
+          </tr>
+          <tr>
+            <td><img src="img/cross.svg" width="11" height="11" alt=""></td>
+            <td><img src="img/ice-mini-2.png" width="33" height="33" alt=""></td>
+            <td>Клубничный пломбир с присыпкой из белого шоколада</td>
+            <td>1,5 кг <span>х 300 руб</span></td>
+            <td>450 руб</td>
+          </tr>
+        </table>
+        <div class="total">Итого: 750 руб.</div>
+        <a href="#">Оформить заказ</a>
+      </div>
+    </div>
+    <div class="phones">
+      С 10 до 20, ежедневно<br>
+      <span>8 812 450-25-25</span>
+    </div>
+    <div class="feedback">
+      <h2>Мы обязательно вам ответим!</h2>
+      <form action="#" method="post">
+        <input type="text" name="feedback-name" placeholder="Как вас зовут?">
+        <input type="email" name="feedback-email" placeholder="Ваша почта для ответа?">
+        <textarea placeholder="Напишите что-нибудь..."></textarea>
+        <button type="submit" name="feedback-submit">Отправить</button> 
+      </form> 
+    </div>
+  </header>
+  <main class="container">
+    <div class="breadcrumbs">
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#">Каталог</a></li>
+        <li class="active">Сливочное</li>
+      </ul>
+    </div>
+    <div class="page-title">
+      Сливочное мороженное
+    </div>
+    <form action="#" method="post">
+      <p>Сортировка</p>
+      <select>
+        <option value="popularity">по популярности</option>
+        <option value="cheap">сначала недорогие</option>
+        <option value="expensive">сначала дорогие</option>
+        <option value="fat">по жирности</option>
+      </select> 
+      <p>Цена: 100 руб. – 500 руб.</p>
+      <input type="range">
+      <p>Жирность:</p>
+      <label><input type="radio" name="fat" value="0%">0%</label>
+      <label><input type="radio" name="fat" value="до 10%" checked>до 10%</label>
+      <label><input type="radio" name="fat" value="до 30%">до 30%</label>
+      <label><input type="radio" name="fat" value="выше 30%">выше 30%</label>
+      <p>Наполнители</p>
+      <label><input type="checkbox" name="filler" value="шоколадные" checked>шоколадные</label>
+      <label><input type="checkbox" name="filler" value="сахарные-присыпки" checked>сахарные присыпки</label>
+      <label><input type="checkbox" name="filler" value="фрукты">фрукты</label>
+      <label><input type="checkbox" name="filler" value="сиропы">сиропы</label>
+      <label><input type="checkbox" name="filler" value="джемы">джемы</label>
+      <button type="submit" name="filter-submit">Применить</button>
+    </form>
+    <div class="items">
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-1.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">310 руб/кг</div>
+        <p>Сливочное с апельсиновым джемом и цитрусовой стружкой</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-2.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">380 руб/кг</div>
+        <p>Сливочно-кофейное с кусочками шоколада</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-3.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">355 руб/кг</div>
+        <p>Сливочно-клубничное с присыпкой из белого шоколада</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-4.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">415 руб/кг</div>
+        <p>Сливочное крем-брюле с карамельной подливкой</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-5.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">325 руб/кг</div>
+        <p>Сливочное с брусничным джемом</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-6.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">410 руб/кг</div>
+        <p>Сливочно-черничное с цельными ягодами черники</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-7.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">375 руб/кг</div>
+        <p>Сливочно-лимонное с карамельной присыпкой</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-8.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">320 руб/кг</div>
+        <p>Сливочное с шоколадной стружкой</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-9.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">440 руб/кг</div>
+        <p>Сливочно-ванильное с кусочками шоколада</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-10.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">435 руб/кг</div>
+        <p>Сливочноe с ментоловым сиропом</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-11.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">355 руб/кг</div>
+        <p>Сливочное с кусочками черного шоколада</p>
+        <a href="#">Быстрый просмотр</a>
+      </section>
+
+      <section class="ice">
+        <div class="photo">
+          <img src="img/ice-12.png" width="200" height="200" alt="">
+        </div>
+        <div class="price">420 руб/кг</div>
+        <p>Сливочное с мятным сиропом</p>
+        <a href="#">Быстрый просмотр</a>
+      </section> 
+    </div>
+
+    <div class="paginator">
+      <a class="prev disabled" href="#prev">Назад</a>
+      <a class="current" href="#1">1</a>
+      <a href="#2">2</a>
+      <a href="#3">3</a>
+      <a href="#4">4</a>
+      <a href="#5">5</a>
+      <a class="next" href="#next">Вперёд</a>
+    </div>
+
+  </main>
+  <footer class="container">
+    <section class="social">
+      <a class="social-btn social-btn-tw" href="#">Твиттер</a>
+      <a class="social-btn social-btn-inst" href="#">Инстаграм</a>
+      <a class="social-btn social-btn-fb" href="#">Фейсбук</a>
+      <a class="social-btn social-btn-vk" href="#">Вконтакте</a>    
+    </section>
+    <nav class="navigation">
+      <ul>
+        <li>Для поставщиков</li>
+        <li>О производстве</li>
+        <li>Наши документы</li>
+        <li>Экологические стандарты</li>
+      </ul>
+    </nav>      
+    <section class="copyright">
+      <a class="btn" href="https://htmlacademy.ru">Сделано в HTML Academy © 2016</a>
+    </section>
+  </footer>
+</body>
+</html>
