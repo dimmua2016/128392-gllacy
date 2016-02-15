@@ -1,5 +1,6 @@
 body {
   min-width: 900px;
+  background-color: #849d8f;
   color: #ffffff;
   font-family: "Roboto", "Arial", sans-serif;
   font-size: 16px;
@@ -9,13 +10,24 @@ body {
 .container {
   width: 860px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 0 20px;
 }
 
 .clearfix:after {
   display: table;
   clear: both;
   content: "";
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 657px;
+  background-image: linear-gradient(white,transparent);
+  opacity: 0.2;
 }
 
 /* Стили, задаваемые к нескольким элементам */
@@ -47,22 +59,26 @@ body {
 }
 
 .field-input {
-  box-sizing: border-box;
   padding: 11px 15px;
+  outline: none;
   border: 1px solid #d3d3d2;
   border-radius: 5px;
   color: #353535;
   font-size: 16px;
 }
 
-.field-input:hover {
-  padding: 10px 14px;
-  border: 2px solid #c7c6c5;
+.field-input:hover,
+.field-input-menu:hover {
+  outline: none;
+  border: 1px solid #c7c6c5;
+  box-shadow: inset 0 0 0 1px #c7c6c5;
 }
 
-.field-input:focus {
-  padding: 10px 14px;
-  border: 2px solid #8fbdec;
+.field-input:focus,
+.field-input-menu:focus {
+  outline: none;
+  border: 1px solid #8fbdec;
+  box-shadow: inset 0 0 0 1px #8fbdec;
 }
 
 .button-a {
@@ -89,6 +105,46 @@ body {
 
 /* Стили страниц */
 
+@keyframes shake {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    transform: scale3d(0.3, 0.3, 0.3);
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.field-error {
+  animation-name: shake;
+  animation-duration: 1s;
+}
+
+.zoomOut {
+  animation-name: zoomOut;
+  animation-duration: 1s;
+}
+
+
 .overlay {
   position: fixed;
   top: 0;
@@ -98,6 +154,10 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.3);
+}
+
+.overlay-show {
+  display: block;
 }
 
 .header-feedback {
@@ -113,15 +173,17 @@ body {
   color: #343434;
 }
 
-.header-feedback:after {
+.header-feedback-close {
   position: absolute;
   top: 15px;
   right: 15px;
   width: 17px;
   height: 17px;
+  border: none;
   background: transparent url("../img/icon-cross-feedback.svg") no-repeat 0 0;
   content: "";
   cursor: pointer;
+  font-size: 0;
 }
 
 .header-feedback h2 {
@@ -132,7 +194,8 @@ body {
 
 .field-name,
 .field-email {
-  width: 267px;
+  /*width: 267px;*/
+  width: 235px; /* еще бордер 2px отнимал */
   margin-bottom: 20px;
 }
 
@@ -144,6 +207,7 @@ body {
 }
 
 .header-feedback textarea {
+  box-sizing: border-box;
   width: 100%;
   height: 155px;
   margin-bottom: 25px;
@@ -152,6 +216,7 @@ body {
 .logo {
   display: block;
   float: left;
+  margin-top: 10px;
   margin-left: -6px;
 }
 
@@ -159,7 +224,7 @@ body {
   float: left;
   max-width: 420px;
   margin: 0;
-  margin-top: 13px;
+  margin-top: 23px;
   margin-left: 16px;
   padding: 0;
   list-style-type: none;
@@ -281,7 +346,7 @@ body {
   position: relative;
   z-index: 2; /* чтобы блок с телефонами перекрывать */
   float: right;
-  margin-top: 13px;
+  margin-top: 23px;
   margin-left: 10px;
 }
 
@@ -335,7 +400,7 @@ body {
   box-sizing: border-box;
   width: 272px;
   margin-top: 5px;
-  padding: 15px;
+  padding: 20px 15px 15px 15px;
   border-radius: 5px;
   background-color: #f8f7f4;
   box-shadow: 0 20px 20px rgba(0,0,0,0.4);
@@ -343,21 +408,11 @@ body {
 
 .field-input-menu {
   width: 219px;
-  padding: 10px;
+  padding: 10px 10px 9px 10px;
   border: 1px solid #d3d3d2;
   border-radius: 5px;
   color: #353535;
   font-size: 14px;
-}
-
-.field-input-menu:hover {
-  padding: 9px;
-  border: 2px solid #c7c6c5;
-}
-
-.field-input-menu:focus {
-  padding: 9px;
-  border: 2px solid #8fbdec;
 }
 
 .login-block .login {
@@ -395,6 +450,10 @@ body {
 }
 
 .login-block .field-input-menu {
+  margin-bottom: 20px;
+}
+
+.login-block .class-login-password {
   margin-bottom: 10px;
 }
 
@@ -573,6 +632,26 @@ input[name="toggle"] {
 #slide-2:checked ~ .wrapper label[for="slide-2"],
 #slide-3:checked ~ .wrapper label[for="slide-3"] {
   background-color: #ffffff;
+}
+
+.wrapper {
+  transition: background-image 1s ease, background-color 1s ease;
+}
+
+/* делаем предзагрузку картинок слайдов */
+.wrapper:before,
+.wrapper:after {
+  visibility: hidden;
+  content: "";
+}
+
+/* интересный прием, хотя и весьма специфичный */
+.wrapper:before {
+  background-image: url("../img/background-slider-2.png");
+}
+
+.wrapper:after {
+  background-image: url("../img/background-slider-3.png");
 }
 
 #slide-1:checked ~ .wrapper {
@@ -868,30 +947,43 @@ input[name="toggle"] {
   z-index: 2;
 }
 
-.delivery input[name="delivery-email"] {
-  width: 229px;
-  margin-right: 10px;
+.delivery .for-label {
+  display: inline-block;
   margin-left: 26px;
 }
 
+.delivery input[name="delivery-email"] {
+  width: 197px;  /* блок for-label я сделал строчным, он тянется на 2px */
+}
+
 .delivery button[name="delivery-submit"] {
+  float: right;
+  margin-right: 25px;
   border: none;
   font-size: 17px;
 }
 
+/* ох я чувствую, что карту я вставил убого, но по другому не знаю как.*/
 .map {
   position: relative;
-  width: 900px;
+  width: 100%;
   height: 430px;
-  margin-left: -20px;
-  background: transparent url("../img/map.jpg") no-repeat 0 0;
+  background: transparent url("../img/map.jpg") no-repeat 50% 0;
+}
+
+.map-google {
+  position: absolute;
+  width: 100%;
+  height: 430px;
 }
 
 .map-feedback {
-  position: absolute;
-  top: 66px;
-  left: 578px;
+  position: relative;
+  right: 20px;
+  z-index: 2;
+  float: right;
   width: 252px;
+  margin-top: 64px;
   padding: 28px 25px;
   border-radius: 15px;
   background-color: #fefefe;  /* хотя тут надо rgba, т.к. заливка в макете 98 процентов от белого цвета */
@@ -1038,4 +1130,372 @@ input[name="toggle"] {
 
 .copyright-a:hover span {
   border-bottom: none;
+}
+
+.breadcrumbs {
+  margin-top: -25px;
+  margin-bottom: 2px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.breadcrumbs li {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.breadcrumbs a {
+  position: relative;
+  margin-right: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.breadcrumbs a:after {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  content: "»";
+}
+
+.page-title {
+  margin-top: 0;
+  margin-bottom: 26px;
+  font-size: 35px;
+}
+
+.sort-form {
+  margin-bottom: 25px;
+}
+
+.sort-form .sort,
+.sort-form .price,
+.sort-form .fat,
+.sort-form .filler {
+  float: left;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.sort-form .price {
+  margin-left: 15px;
+}
+
+.sort-form .fat {
+  float: right;
+}
+
+.sort-form p {
+  margin: 0;
+  margin-bottom: 7px;
+  padding-left: 17px;
+  font-size: 14px;
+}
+
+.sort-form input {
+  display: none;
+}
+
+.sort-form .div-field {
+  padding: 8px 16px 9px 16px;
+  border-radius: 18px;
+  background-color: rgba(255,255,255,0.2);
+}
+
+.sort-form .select {
+  padding: 7px 12px;
+}
+
+.sort-form select {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.sort-form .select:hover {
+  background-color: #ffffff;
+  color: #343434;
+}
+
+.sort-form label {
+  position: relative;
+  margin-right: 16px;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.sort-form label.cls-chk {
+  margin-right: 20px;
+}
+
+
+.sort-form label:last-child {
+  margin-right: 0;
+}
+
+.sort-form label:before {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ffffff;
+  content: "";
+}
+
+.sort-form label:hover:before {
+  border: 2px solid #ffffff;
+}
+
+#fat1:disabled ~ label[for="fat1"],
+#fat2:disabled ~ label[for="fat2"],
+#fat3:disabled ~ label[for="fat3"],
+#fat4:disabled ~ label[for="fat4"],
+#filler1:disabled ~ label[for="filler1"],
+#filler2:disabled ~ label[for="filler2"],
+#filler3:disabled ~ label[for="filler3"],
+#filler4:disabled ~ label[for="filler4"],
+#filler5:disabled ~ label[for="filler5"] {
+  opacity: 0.4;
+}
+
+#fat1:disabled:hover ~ label[for="fat1"]:before,
+#fat2:disabled:hover ~ label[for="fat2"]:before,
+#fat3:disabled:hover ~ label[for="fat3"]:before,
+#fat4:disabled:hover ~ label[for="fat4"]:before,
+#filler1:disabled:hover ~ label[for="filler1"]:before,
+#filler2:disabled:hover ~ label[for="filler2"]:before,
+#filler3:disabled:hover ~ label[for="filler3"]:before,
+#filler4:disabled:hover ~ label[for="filler4"]:before,
+#filler5:disabled:hover ~ label[for="filler5"]:before {
+  border: 1px solid #ffffff;
+}
+
+#fat1:disabled:hover ~ label[for="fat1"],
+#fat2:disabled:hover ~ label[for="fat2"],
+#fat3:disabled:hover ~ label[for="fat3"],
+#fat4:disabled:hover ~ label[for="fat4"],
+#filler1:disabled:hover ~ label[for="filler1"],
+#filler2:disabled:hover ~ label[for="filler2"],
+#filler3:disabled:hover ~ label[for="filler3"],
+#filler4:disabled:hover ~ label[for="filler4"],
+#filler5:disabled:hover ~ label[for="filler5"] {
+  cursor: default;
+}
+
+.sort-form label.cls-radio:before {
+  border-radius: 50%;
+}
+
+.sort-form label.cls-chk:before {
+  border-radius: 4px;
+}
+
+.sort-form label.cls-radio:after {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  display: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  content: "";
+}
+
+.sort-form label.cls-chk:after {
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  display: none;
+  width: 9px;
+  height: 5px;
+  border-bottom: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  content: "";
+  transform: rotate(-45deg);
+}
+
+#fat1:checked ~ label[for="fat1"]:after,
+#fat2:checked ~ label[for="fat2"]:after,
+#fat3:checked ~ label[for="fat3"]:after,
+#fat4:checked ~ label[for="fat4"]:after {
+  display: block;
+}
+
+#filler1:checked ~ label[for="filler1"]:after,
+#filler2:checked ~ label[for="filler2"]:after,
+#filler3:checked ~ label[for="filler3"]:after,
+#filler4:checked ~ label[for="filler4"]:after,
+#filler5:checked ~ label[for="filler5"]:after {
+  display: block;
+}
+
+.sort-form .range {
+  position: relative;
+  width: 219px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: rgba(255,255,255,0.2);
+}
+
+.sort-form .scale {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  left: 15px;
+  height: 4px;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.sort-form .bar {
+  width: 98px;
+  height: 4px;
+  margin-left: 29px;
+  background-color: #ffffff;
+}
+
+.sort-form .toggle {
+  position: absolute;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.sort-form .toggle:hover {
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+/* left = min 5px, max 194px*/
+.sort-form .min-toggle {
+  left: 34px;
+}
+
+.sort-form .max-toggle {
+  left: 132px;
+}
+
+.sort-form button[name="filter-submit"] {
+  float: right;
+  width: 144px;
+  height: 36px;
+  margin-top: 24px;
+  border: 2px solid #ffffff;
+  border-radius: 18px;
+  background-color: rgba(255,255,255,0.2);
+}
+
+.sort-form button[name="filter-submit"]:hover {
+  background-color: #ffffff;
+  color: #363636;
+}
+
+.sort-form button[name="filter-submit"]:active {
+  border: none;
+  background-color: #eaeaea;
+  box-shadow: inset 0 2px 1px #696969;
+}
+
+.paginator {
+  float: right;
+  margin-top: 63px;
+  margin-right: -9px;
+  margin-bottom: 30px;
+}
+
+.paginator a,
+.paginator span {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: top;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.paginator a:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.paginator .current,
+.paginator a:active {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.paginator .prev,
+.paginator .next {
+  position: relative;
+  font-size: 0;
+}
+
+/* оказывается, я люблю рисовать на CSS */
+.paginator .prev:before,
+.paginator .next:before {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  content: "";
+  transform: rotate(-135deg);
+}
+
+.paginator .next:before {
+  left: 6px;
+  transform: rotate(45deg);
+}
+/* пришлось уточнять, что именно ссылка, 
+а то оказывается у всех элементов есть состояние active! */
+.paginator a.prev:active:before,
+.paginator a.next:active:before {
+  border-top: 2px solid #000000;
+  border-right: 2px solid #000000;
+}
+
+.paginator .disabled:before {
+  opacity: 0.2;
+}
+
+.catalog-main {
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.for-label {
+  position: relative;
+}
+
+.for-label label {
+  position: absolute;
+  top: -16px;
+  left: 17px;
+  display: none;
+  color: #5b9ddf;
+  font-size: 11px;
+}
+
+.for-label input:focus ~ label,
+.for-label textarea:focus ~ label {
+  display: block;
+}
+
+/* у них padding у поля меньше, вот и лабел надо двигать */
+.login-block label,
+.search-block label {
+  left: 11px;
 }
