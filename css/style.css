@@ -1157,7 +1157,7 @@ input[name="toggle"] {
   position: absolute;
   top: 0;
   right: -14px;
-  content: "»";
+  content: "\00bb";
 }
 
 .page-title {
